@@ -19,8 +19,22 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-sm-4 bg-light">
-
+            <div class="col-sm-4 bg-light p-3">
+                <!-- Begin form for city input -->
+                <form>
+                    <label class="searchHL" for="search-city">Search for a city:</label>
+                    <!-- Bootstrap input layout for form -->
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="search-city">
+                        <div class="input-group-append">
+                            <button class="btn bg-primary text-light" id="search-button"><i class="fa fa-search"></i></button>
+                        </div>    
+                    </div>
+                </form>
+                <!-- section for search history buttons - local storage pull -->
+                <button class="btn btn-primary" type="button" id="clear-history">Clear History</button>
+                <ul class="list-group">
+                </ul>
             </div>
             <div class="col-sm-8">
 
