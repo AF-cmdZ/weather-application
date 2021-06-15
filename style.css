@@ -1,25 +1,16 @@
-*{
-    box-sizing: border-box;
-    
+.navbar-brand {
+    font-size: 36px;
 }
 
-body {
-    
-    font-size: 16px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    
-}
-h3{
+.search-header {
+    font-size: 24px;
     font-weight: bold;
 }
-.forecast{
-    
-    font-size: 0.9em;
+
+.city-name {
+    font-size: 30px;
 }
-span{
-    font-size: 1em;
-}
-li:hover{
-    background-color: lightslategray;
-    text-decoration: underline;
+
+.forecast-date {
+    font-size: 18px;
 }
