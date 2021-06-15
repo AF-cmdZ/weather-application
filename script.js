@@ -1,6 +1,6 @@
 //Declare a variable to store the searched city
 var city="";
-// variable declaration
+// variable declarations
 var searchCity = $("#search-city");
 var searchButton = $("#search-button");
 var clearButton = $("#clear-history");
@@ -20,7 +20,7 @@ function find(c){
     }
     return 1;
 }
-//Set up the API key
+//Set up my API key
 var APIKey="c2b57ce6c568bc5d04209e2700a7de85";
 // Display the current and future weather to the user after grabbing the city from the input text box.
 function displayWeather(event){
@@ -34,7 +34,7 @@ function displayWeather(event){
 // Getting the API info for current weather 
 function currentWeather(city){
     // Here we build the URL so we can get data from server side.
-    var queryURL= "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=" + APIKey;
+    var queryURL= "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial" + "&APPID=" + APIKey;
     $.ajax({
         url:queryURL,
         method:"GET",
@@ -47,13 +47,13 @@ function currentWeather(city){
         var iconurl="https://openweathermap.org/img/wn/"+weathericon +"@2x.png";
         // The date format method is taken from the  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
         var date=new Date(response.dt*1000).toLocaleDateString();
-        //parse the response for name of city and concanatig the date and icon.
+        //parse the response for name of city and concatenating the date and icon.
         $(currentCity).html(response.name +"("+date+")" + "<img src="+iconurl+">");
         // parse the response to display the current temperature.
         // Convert the temp to fahrenheit
 
-        var tempF = (response.main.temp - 273.15) * 1.80 + 32;
-        $(currentTemperature).html((tempF).toFixed(2)+"&#8457");
+        var tempF = (response.main.temp);
+        $(currentTemperature).html((tempF).toFixed(0)+"&#8457");
         // Display the Humidity
         $(currentHumidty).html(response.main.humidity+"%");
         //Display Wind speed and convert to MPH
@@ -98,9 +98,9 @@ function UVIndex(ln,lt){
 }
     
 // 5 day forecast
-function forecast(cityid){
+function forecast(cityname){
     var dayover= false;
-    var queryforcastURL="https://api.openweathermap.org/data/2.5/forecast?id="+cityid+"&appid="+APIKey;
+    var queryforcastURL="api.openweathermap.org/data/2.5/forecast?q="+ cityname + "&units=imperial" + "&appid=" + APIKey;
     $.ajax({
         url:queryforcastURL,
         method:"GET"
@@ -110,8 +110,7 @@ function forecast(cityid){
             var date= new Date((response.list[((i+1)*8)-1].dt)*1000).toLocaleDateString();
             var iconcode= response.list[((i+1)*8)-1].weather[0].icon;
             var iconurl="https://openweathermap.org/img/wn/"+iconcode+".png";
-            var tempK= response.list[((i+1)*8)-1].main.temp;
-            var tempF=(((tempK-273.5)*1.80)+32).toFixed(2);
+            var tempF=(response.main.temp).toFixed(0);
             var humidity= response.list[((i+1)*8)-1].main.humidity;
         
             $("#fDate"+i).html(date);
